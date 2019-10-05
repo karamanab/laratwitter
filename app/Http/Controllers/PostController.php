@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -19,7 +20,7 @@ class PostController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->take($request->get('limit', 10))
                         ->get();
-          
+
         return response()->json($posts);
     }
 
@@ -28,7 +29,12 @@ class PostController extends Controller
         $newPost = $request->user()->posts()->create([
             'body' => $request->get('body')
         ]);
-   
         return response()->json($post->with('user')->find($newPost->id));
     }
+
+    public function tweets(){
+        $tweets = DB::table('posts')->get();
+        return response()->json($tweets);
+    }
+
 }
