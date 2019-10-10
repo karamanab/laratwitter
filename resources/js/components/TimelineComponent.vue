@@ -5,7 +5,7 @@
             <img class="mr-3" />
             <div class="media-body">
                 <div class="mt-3">
-                    <a :href="post.user.profileLink">{{ post.user.name }}</a> | {{ post.createdDate }}
+                    <a href="post.user.profileLink">{{ post.user.name }}</a> | {{ post.createdDate }}
                 </div>
                 <p>{{ post.body }}</p>
             </div>
@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import axios from '../lib/axios';
+
 import Event from '../event.js';
 
 export default {
