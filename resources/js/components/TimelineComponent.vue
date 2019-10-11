@@ -5,7 +5,7 @@
             <img class="mr-3" />
             <div class="media-body">
                 <div class="mt-3">
-                    <a :href="post.user.profileLink">{{ post.user.name }}</a> | {{ post.createdDate }}
+                    <a href=post.user.profileLink>{{ post.user.name }}</a> | {{ post.createdDate }}
                 </div>
                 <p>{{ post.body }}</p>
             </div>
@@ -13,24 +13,26 @@
     </div>
 </template>
 <script>
-import axios from '../lib/axios';
-import Event from '../event.js';
+    import Event from '../event.js';
 
-export default {
-    data() {
-        return {
-            posts: [],
-            post: {}
+    export default {
+        data() {
+            return {
+                posts: [],
+                post: {}
+            }
+        },
+        mounted() {
+
+            console.log("mounted oldu");
+            await axios.get('/posts').then((resp => {
+                this.posts = resp.data;
+                console.log(this.posts);
+            }));
+
+            Event.$on('added_tweet', (post) => {
+                this.posts.unshift(post);
+            });
         }
-    },
-    mounted() {
-        
-        axios.get('/posts').then((resp => {
-            this.posts = resp.data;
-        }));
-        Event.$on('added_tweet', (post) => {
-            this.posts.unshift(post);
-        });
     }
-}
 </script>

@@ -37,4 +37,14 @@ class PostController extends Controller
         return response()->json($tweets);
     }
 
+    public function userstweets()
+    {
+        $numberoftweets = DB::select('select count(user_id) from posts group by user_id');
+
+        return response()->json($numberoftweets);
+        //return response($numberoftweets)
+            //->header('Number of Tweets', $numberoftweets);
+            //->header('Number of Tweets', 'xx');
+    }
+
 }
