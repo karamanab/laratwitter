@@ -6,9 +6,9 @@
 	<label class="label" for="title">Editing "{{ $user->name }}"</label>
 </div>
 
-<p class="lead">Edit and save this user below, or <a href="/users">go back to all tasks.</a></p>
+<p class="lead">Edit and save this user below, or <a href="/admin/users">go back to all users.</a></p>
 
-<form method="POST" action="/users/{{ $user->id }}/edit" style="margin-bottom: 1em">
+<form method="POST" action="/admin/users/{{ $user->id }}/edit" style="margin-bottom: 1em">
 	
 	{{ method_field('PATCH') }}
 	{{ csrf_field() }}
@@ -35,7 +35,7 @@
 
 </form>
 
-<form method="POST" action="/users/{{ $user->id }}">
+<form method="POST" action="/admin/users/{{ $user->id }}">
 	{{ method_field('DELETE') }}
 	{{ csrf_field() }}
 

@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/users/{id}', 'AdminPageController@show');
-Route::resource('users', 'AdminPageController');
-Route::patch('/users/{id}/edit', 'AdminPageController@update');
+Route::get('/admin/users/{id}', 'AdminPageController@show')->middleware('admin');
+Route::resource('/admin/users', 'AdminPageController')->middleware('admin');
+Route::patch('/admin/users/{id}/edit', 'AdminPageController@update')->middleware('admin');
 
 //Route::get('/users', 'AdminPageController@index');
 //Route::get('/users/{id}', 'AdminPageController@show');
